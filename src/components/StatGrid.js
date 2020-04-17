@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 22
   },
   differenceIcon: {
-    marginTop: theme.spacing(3)
+    marginTop: theme.spacing(1)
     // color: theme.palette.error.dark
   },
   differenceValue: {

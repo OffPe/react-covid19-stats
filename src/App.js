@@ -84,10 +84,16 @@ export default function App() {
         deceased_total_count: numberWithCommas(
           api_response.data.statewise[0].deaths
         ),
-        confirmed_latest_total_count: 0,
+        confirmed_latest_total_count: numberWithCommas(
+          api_response.data.statewise[0].deltaconfirmed
+        ),
         active_latest_total_count: 0,
-        recovered_latest_total_count: 0,
-        deceased_latest_total_count: 0,
+        recovered_latest_total_count: numberWithCommas(
+          api_response.data.statewise[0].deltarecovered
+        ),
+        deceased_latest_total_count: numberWithCommas(
+          api_response.data.statewise[0].deltadeaths
+        ),
         last_updated: moment(
           api_response.data.statewise[0].lastupdatedtime,
           "DD/MM/YYYY hh:mm:ss"
