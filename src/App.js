@@ -68,7 +68,13 @@ export default function App() {
   });
 
   const setData = async () => {
-    const api_response = await axios.get(API_ENDPOINTS.DATA);
+    let api_response;
+    try {
+      api_response = await axios.get(API_ENDPOINTS.DATA);
+    } catch (error) {
+      console.log("Error:", error);
+      return;
+    }
 
     setAppState({
       meta: {
