@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 
 const StatGrid = (props) => {
   const { className, ...rest } = props;
-  const { statText, totalCount, latestCount } = props;
+  const { stattext, totalcount, latestcount } = props;
 
   const classes = useStyles();
 
@@ -40,15 +40,15 @@ const StatGrid = (props) => {
               gutterBottom
               variant="body2"
             >
-              {statText}
+              {stattext}
             </Typography>
-            <Typography variant="h3">{totalCount}</Typography>
+            <Typography variant="h3">{totalcount}</Typography>
           </Grid>
-          {latestCount ? (
+          {latestcount ? (
             <Grid item>
               <ArrowUpwardIcon className={classes.differenceIcon} />
               <Typography className={classes.differenceValue} variant="body2">
-                {latestCount}
+                {latestcount}
               </Typography>
             </Grid>
           ) : null}
