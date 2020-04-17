@@ -1,3 +1,7 @@
+# react-covid19-stats
+
+A dashboard which shows the covid19 stats, developed using reactjs.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
