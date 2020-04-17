@@ -13,6 +13,9 @@ const useStyles = makeStyles((theme) => ({
   title: {
     fontWeight: 700
   },
+  count: {
+    fontSize: 22
+  },
   differenceIcon: {
     marginTop: theme.spacing(3)
     // color: theme.palette.error.dark
@@ -42,7 +45,7 @@ const StatGrid = (props) => {
             >
               {stattext}
             </Typography>
-            <Typography variant="h3">{totalcount}</Typography>
+            <Typography className={classes.count}>{totalcount}</Typography>
           </Grid>
           {latestcount ? (
             <Grid item>

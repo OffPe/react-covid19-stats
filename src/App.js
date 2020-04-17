@@ -127,7 +127,7 @@ export default function App() {
         </Grid>
 
         <Grid container spacing={4}>
-          <Grid item lg={3} sm={6} xl={3} xs={12}>
+          <Grid item lg={3} sm={6} xl={3} xs={6}>
             <StatGrid
               stattext="Confirmed"
               totalcount={appState.meta.confirmed_total_count}
@@ -135,7 +135,7 @@ export default function App() {
               className={classes.errorText}
             />
           </Grid>
-          <Grid item lg={3} sm={6} xl={3} xs={12}>
+          <Grid item lg={3} sm={6} xl={3} xs={6}>
             <StatGrid
               stattext="Active"
               totalcount={appState.meta.active_total_count}
@@ -143,7 +143,7 @@ export default function App() {
               className={classes.primaryText}
             />
           </Grid>
-          <Grid item lg={3} sm={6} xl={3} xs={12}>
+          <Grid item lg={3} sm={6} xl={3} xs={6}>
             <StatGrid
               stattext="Recovered"
               totalcount={appState.meta.recovered_total_count}
@@ -151,7 +151,7 @@ export default function App() {
               className={classes.successText}
             />
           </Grid>
-          <Grid item lg={3} sm={6} xl={3} xs={12}>
+          <Grid item lg={3} sm={6} xl={3} xs={6}>
             <StatGrid
               stattext="Deceased"
               totalcount={appState.meta.deceased_total_count}
