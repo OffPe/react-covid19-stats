@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import StatGrid from "./components/StatGrid";
+import StatTable from "./components/StatTable";
 import axios from "axios";
 import moment from "moment";
 import API_ENDPOINTS from "./constants/api";
@@ -64,7 +65,8 @@ export default function App() {
       recovered_latest_total_count: 0,
       deceased_latest_total_count: 0,
       last_updated: ""
-    }
+    },
+    state_wise_rows: []
   });
 
   const setData = async () => {
@@ -104,13 +106,32 @@ export default function App() {
           api_response.data.statewise[0].lastupdatedtime,
           "DD/MM/YYYY hh:mm:ss"
         ).fromNow()
-      }
+      },
+      state_wise_rows: frame_state_wise_data(api_response.data.statewise)
     });
+  };
+
+  const frame_state_wise_data = (data = []) => {
+    let response = [];
+    if (!data.length) return response;
+    data.splice(0, 1); //1st index contains the meta.
+    // console.log("data:::", data);
+    for (let i = 1; i < data.length; i++) {
+      let current_state = data[i];
+      response.push({
+        state_ut: current_state.state,
+        confirmed: current_state.confirmed,
+        active: current_state.active,
+        recovered: current_state.recovered,
+        deceased: current_state.deaths
+      });
+    }
+    return response;
   };
 
   useEffect(() => {
     setData(appState);
-  }, [appState]);
+  }, []);
 
   const classes = useStyles();
 
@@ -138,7 +159,7 @@ export default function App() {
           </Grid>
         </Grid>
 
-        <Grid container spacing={4}>
+        <Grid className={classes.row} container spacing={4}>
           <Grid item lg={3} sm={6} xl={3} xs={6}>
             <StatGrid
               stattext="Confirmed"
@@ -172,7 +193,10 @@ export default function App() {
             />
           </Grid>
         </Grid>
+
+        <StatTable rows={appState.state_wise_rows} />
       </div>
+
       <Box mt={8}>
         <Copyright />
       </Box>
