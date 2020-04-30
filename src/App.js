@@ -116,7 +116,7 @@ export default function App() {
     if (!data.length) return response;
     data.splice(0, 1); //1st index contains the meta.
     // console.log("data:::", data);
-    for (let i = 1; i < data.length; i++) {
+    for (let i = 0; i < data.length; i++) {
       let current_state = data[i];
       response.push({
         state_ut: current_state.state,
