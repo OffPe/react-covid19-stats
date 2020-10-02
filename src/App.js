@@ -8,13 +8,17 @@ import { makeStyles, createMuiTheme, ThemeProvider } from "@material-ui/core/sty
 import Container from "@material-ui/core/Container";
 import StatGrid from "./components/StatGrid";
 import StatTable from "./components/StatTable";
-import ThemeSwitcher from "./components/ThemeSwitcher";
+import useThemeSwitcher from "./components/ThemeSwitcher";
 import axios from "axios";
 import moment from "moment";
 import API_ENDPOINTS from "./constants/api";
+import "./dark.css";
 
 function Copyright() {
+
+  
   return (
+    <div>
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
       <Link color="inherit" href="https://offpe.github.io/react-covid19-stats/">
@@ -23,6 +27,8 @@ function Copyright() {
       {new Date().getFullYear()}
       {"."}
     </Typography>
+    
+    </div>
   );
 }
 
@@ -70,7 +76,7 @@ export default function App() {
     state_wise_rows: []
   });
 
-  const [theme, setTheme] = useState('light');
+  
 
   const setData = async () => {
     let api_response;
@@ -138,25 +144,13 @@ export default function App() {
 
   const classes = useStyles();
 
-  const muiTheme = useMemo(
-    () =>
-      createMuiTheme({
-        palette: {
-          type: theme,
-        },
-      }),
-    [theme]
-  );
+  const ThemeSwitcher = useThemeSwitcher();
 
-  const onThemeChange = useCallback((event) => {
-    const nextTheme = event.target.checked ? 'dark' : 'light';
-    setTheme(nextTheme);
-  }, [setTheme]);
-
-
+  
   return (
-    <ThemeProvider theme={muiTheme}>
+    
     <Container component="main">
+
       <CssBaseline />
       <div className={classes.paper}>
         <Grid className={classes.row} container justify="space-between">
@@ -170,13 +164,21 @@ export default function App() {
           </Grid>
           <Grid className={classes.statsItem} item>
             <Typography display="inline" variant="caption" color="primary">
-              Last updated
+              Last updated                  
               <br />
             </Typography>
+            
             <Typography display="inline" variant="subtitle2" color="primary">
               {appState.meta.last_updated}
             </Typography>
           </Grid>
+         
+
+        </Grid>
+        <Grid className={classes.row} container justify="space-between">
+        <Grid className={classes.statsItem} item>
+          {ThemeSwitcher}
+        </Grid>
         </Grid>
 
         <Grid className={classes.row} container spacing={4}>
@@ -220,11 +222,8 @@ export default function App() {
       <Box mt={8}>
         <Copyright />
       </Box>
-      <ThemeSwitcher
-        theme={theme}
-        onThemeChange={onThemeChange}
-      />
+      
     </Container>
-    </ThemeProvider>
+    
   );
 }
