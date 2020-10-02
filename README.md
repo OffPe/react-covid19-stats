@@ -4,7 +4,7 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-A dashboard which shows the covid19 stats, developed using reactjs.
+The dashboard shows the covid19 stats for India. It is developed using reactjs along with material-UI.
 
 [Check the stats here](https://offpe.github.io/react-covid19-stats/)
 
