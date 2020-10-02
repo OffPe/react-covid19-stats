@@ -8,4 +8,4 @@ A dashboard which shows the covid19 stats, developed using reactjs.
 
 # Contributors:
 
-Join our slack worspace [here](http://bit.ly/open-offpe-slack)
+Join our slack workspace [here](http://bit.ly/open-offpe-slack)
