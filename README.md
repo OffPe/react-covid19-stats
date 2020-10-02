@@ -6,6 +6,8 @@
 
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
+![Github Action](https://github.com/OffPe/react-covid19-stats/workflows/MasterDeployCI/badge.svg)
+
 The dashboard shows the covid19 stats of India. It is developed using reactjs along with material-UI.
 
 [Check the stats here](https://offpe.github.io/react-covid19-stats/)
