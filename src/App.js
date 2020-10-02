@@ -11,6 +11,7 @@ import StatTable from "./components/StatTable";
 import axios from "axios";
 import moment from "moment";
 import API_ENDPOINTS from "./constants/api";
+import OfflinePage from './components/OfflinePage';
 
 function Copyright() {
   return (
@@ -68,6 +69,8 @@ export default function App() {
     },
     state_wise_rows: []
   });
+
+  const [offlineStatus, setOfflineStatus] = useState('');
 
   const setData = async () => {
     let api_response;
@@ -133,9 +136,23 @@ export default function App() {
     setData(appState);
   }, []);
 
+  useEffect(() => {
+    const res = navigator.onLine ? 'online' : 'offline';
+    setOfflineStatus(res);
+  }, [offlineStatus]);
+
+  useEffect(() => {
+    const handler = () => {
+      setOfflineStatus('offline');
+      console.log('Offline');
+    }
+    window.addEventListener('offline', handler);
+    return () => window.removeEventListener('offline', handler);
+  })
+
   const classes = useStyles();
 
-  return (
+  return offlineStatus === 'offline' ? (<OfflinePage />) : (
     <Container component="main">
       <CssBaseline />
       <div className={classes.paper}>
