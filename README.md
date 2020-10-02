@@ -1,18 +1,71 @@
-# react-covid19-stats
+<h1 align="center">
+  🦠react-covid19-stats 📊
+</h1>
 
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+<p align="center">
+<a href="https://github.com/OffPe/react-covid19-stats/blob/master/LICENSE" target="blank">
+<img src="https://img.shields.io/github/license/OffPe/react-covid19-stats?style=flat-square" alt="react-covid19-stats licence" />
+</a>
+<a href="https://github.com/OffPe/react-covid19-stats/fork" target="blank">
+<img src="https://img.shields.io/github/forks/OffPe/react-covid19-stats?style=flat-square" alt="react-covid19-stats forks"/>
+</a>
+<a href="https://github.com/OffPe/react-covid19-stats/stargazers" target="blank">
+<img src="https://img.shields.io/github/stars/OffPe/react-covid19-stats?style=flat-square" alt="react-covid19-stats stars"/>
+</a>
+<a href="https://github.com/OffPe/react-covid19-stats/issues" target="blank">
+<img src="https://img.shields.io/github/issues/OffPe/react-covid19-stats?style=flat-square" alt="react-covid19-stats issues"/>
+</a>
+<a href="https://github.com/OffPe/react-covid19-stats/pulls" target="blank">
+<img src="https://img.shields.io/github/issues-pr/OffPe/react-covid19-stats?style=flat-square" alt="react-covid19-stats pull-requests"/>
+</a>
+<a href="https://github.com/OffPe/react-covid19-stats#contributors-" target="blank">
+<img src="https://img.shields.io/github/all-contributors/offpe/react-covid19-stats?style=flat-square" alt="react-covid19-stats All Contributors"/>
+</a>
+<a href="https://offpe.github.io/react-covid19-stats/" target="blank">
+<img src="https://img.shields.io/website?url=https://offpe.github.io/react-covid19-stats/&logo=github&style=flat-square" />
+</a>
+<a href="https://offpe.github.io/react-covid19-stats/" target="blank">
+<img src="https://img.shields.io/github/workflow/status/offpe/react-covid19-stats/MasterDeployCI?style=flat-square" />
+</a>
+</p>
 
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
-
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
-
-![Github Action](https://github.com/OffPe/react-covid19-stats/workflows/MasterDeployCI/badge.svg)
+<p align="center">
+<img src="https://i.ibb.co/3dXj5yR/Screenshot-2020-04-17-at-11-04-43-PM.png" alt="Covid19 Tracker" />
+</p>
 
 The dashboard shows the covid19 stats of India. It is developed using reactjs along with material-UI.
 
-[Check the stats here](https://offpe.github.io/react-covid19-stats/)
+## 🚀 Demo
 
-![Covid19 Tracker](https://i.ibb.co/3dXj5yR/Screenshot-2020-04-17-at-11-04-43-PM.png)
+Try the tool: [React-covid19-stats](https://offpe.github.io/react-covid19-stats/)
+
+## 🛠️ Installation Steps
+
+1. Clone the repository
+
+```bash
+git clone git@github.com:OffPe/react-covid19-stats.git
+```
+
+2. Change the working directory
+
+```bash
+cd react-covid19-stats
+```
+
+3. Install dependencies
+
+```bash
+npm install
+```
+
+4. Run the app
+
+```bash
+npm start
+```
+
+🌟 You are all set!
 
 ## Contributors ✨
 
@@ -33,4 +86,8 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+## 💻 Built with
+
+- [CRA](https://create-react-app.dev/)
+- [MATERIAL-UI](https://material-ui.com/): for styling
+- [Material Icons](https://material-ui.com/components/material-icons/): for Icons
