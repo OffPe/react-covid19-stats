@@ -138,6 +138,7 @@ export default function App() {
 
   useEffect(() => {
     setData(appState);
+    // eslint-disable-next-line
   }, []);
 
   const classes = useStyles();
