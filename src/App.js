@@ -16,7 +16,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
-      <Link color="inherit" href="https://covid19-tracker.surge.sh/">
+      <Link color="inherit" href="https://offpe.github.io/react-covid19-stats/">
         Covid19 Tracker
       </Link>{" "}
       {new Date().getFullYear()}
