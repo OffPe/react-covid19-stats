@@ -36,6 +36,9 @@ const useStyles = makeStyles((theme) => ({
   row: {
     marginBottom: theme.spacing(3)
   },
+  height100: {
+    height: "100%" 
+  },
   primaryText: {
     color: theme.palette.primary.main
   },
@@ -185,7 +188,7 @@ export default function App() {
               stattext="Confirmed"
               totalcount={appState.meta.confirmed_total_count}
               latestcount={appState.meta.confirmed_latest_total_count}
-              className={classes.errorText}
+              className={`${classes.errorText} ${classes.height100}`}
             />
           </Grid>
           <Grid item lg={3} sm={6} xl={3} xs={6}>
@@ -193,7 +196,7 @@ export default function App() {
               stattext="Active"
               totalcount={appState.meta.active_total_count}
               latestcount={appState.meta.active_latest_total_count}
-              className={classes.primaryText}
+              className={`${classes.primaryText} ${classes.height100}`}
             />
           </Grid>
           <Grid item lg={3} sm={6} xl={3} xs={6}>
@@ -201,7 +204,7 @@ export default function App() {
               stattext="Recovered"
               totalcount={appState.meta.recovered_total_count}
               latestcount={appState.meta.recovered_latest_total_count}
-              className={classes.successText}
+              className={`${classes.successText} ${classes.height100}`}
             />
           </Grid>
           <Grid item lg={3} sm={6} xl={3} xs={6}>
@@ -209,7 +212,7 @@ export default function App() {
               stattext="Deceased"
               totalcount={appState.meta.deceased_total_count}
               latestcount={appState.meta.deceased_latest_total_count}
-              className={classes.greyText}
+              className={`${classes.greyText} ${classes.height100}`}
             />
           </Grid>
         </Grid>
