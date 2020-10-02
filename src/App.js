@@ -4,7 +4,11 @@ import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles, createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import {
+  makeStyles,
+  createMuiTheme,
+  ThemeProvider
+} from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import StatGrid from "./components/StatGrid";
 import StatTable from "./components/StatTable";
@@ -76,7 +80,11 @@ export default function App() {
     state_wise_rows: []
   });
 
+<<<<<<< HEAD
   
+=======
+  const [theme, setTheme] = useState("light");
+>>>>>>> 5ddc96723226d616a0261fa1668761d83ee21247
 
   const setData = async () => {
     let api_response;
@@ -140,14 +148,36 @@ export default function App() {
 
   useEffect(() => {
     setData(appState);
+    // eslint-disable-next-line
   }, []);
 
   const classes = useStyles();
 
+<<<<<<< HEAD
   const ThemeSwitcher = useThemeSwitcher();
+=======
+  const muiTheme = useMemo(
+    () =>
+      createMuiTheme({
+        palette: {
+          type: theme
+        }
+      }),
+    [theme]
+  );
+
+  const onThemeChange = useCallback(
+    (event) => {
+      const nextTheme = event.target.checked ? "dark" : "light";
+      setTheme(nextTheme);
+    },
+    [setTheme]
+  );
+>>>>>>> 5ddc96723226d616a0261fa1668761d83ee21247
 
   
   return (
+<<<<<<< HEAD
     
     <Container component="main">
 
@@ -157,9 +187,27 @@ export default function App() {
           <Grid className={classes.statsItem} item>
             <Typography display="inline" variant="h4" color="primary">
               Covid19 Tracker
-              <Typography display="inline" variant="caption" color="primary">
-                (India)
+=======
+    <ThemeProvider theme={muiTheme}>
+      <Container component="main">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Grid className={classes.row} container justify="space-between">
+            <Grid className={classes.statsItem} item>
+              <Typography display="inline" variant="h4" color="primary">
+                Covid19 Tracker
+                <Typography display="inline" variant="caption" color="primary">
+                  (India)
+                </Typography>
               </Typography>
+            </Grid>
+            <Grid className={classes.statsItem} item>
+>>>>>>> 5ddc96723226d616a0261fa1668761d83ee21247
+              <Typography display="inline" variant="caption" color="primary">
+                Last updated
+                <br />
+              </Typography>
+<<<<<<< HEAD
             </Typography>
           </Grid>
           <Grid className={classes.statsItem} item>
@@ -205,15 +253,49 @@ export default function App() {
               latestcount={appState.meta.recovered_latest_total_count}
               className={classes.successText}
             />
+=======
+              <Typography display="inline" variant="subtitle2" color="primary">
+                {appState.meta.last_updated}
+              </Typography>
+            </Grid>
+>>>>>>> 5ddc96723226d616a0261fa1668761d83ee21247
           </Grid>
-          <Grid item lg={3} sm={6} xl={3} xs={6}>
-            <StatGrid
-              stattext="Deceased"
-              totalcount={appState.meta.deceased_total_count}
-              latestcount={appState.meta.deceased_latest_total_count}
-              className={classes.greyText}
-            />
+
+          <Grid className={classes.row} container spacing={4}>
+            <Grid item lg={3} sm={6} xl={3} xs={6}>
+              <StatGrid
+                stattext="Confirmed"
+                totalcount={appState.meta.confirmed_total_count}
+                latestcount={appState.meta.confirmed_latest_total_count}
+                className={classes.errorText}
+              />
+            </Grid>
+            <Grid item lg={3} sm={6} xl={3} xs={6}>
+              <StatGrid
+                stattext="Active"
+                totalcount={appState.meta.active_total_count}
+                latestcount={appState.meta.active_latest_total_count}
+                className={classes.primaryText}
+              />
+            </Grid>
+            <Grid item lg={3} sm={6} xl={3} xs={6}>
+              <StatGrid
+                stattext="Recovered"
+                totalcount={appState.meta.recovered_total_count}
+                latestcount={appState.meta.recovered_latest_total_count}
+                className={classes.successText}
+              />
+            </Grid>
+            <Grid item lg={3} sm={6} xl={3} xs={6}>
+              <StatGrid
+                stattext="Deceased"
+                totalcount={appState.meta.deceased_total_count}
+                latestcount={appState.meta.deceased_latest_total_count}
+                className={classes.greyText}
+              />
+            </Grid>
           </Grid>
+<<<<<<< HEAD
         </Grid>
 
         <StatTable rows={appState.state_wise_rows} />
@@ -225,5 +307,17 @@ export default function App() {
       
     </Container>
     
+=======
+
+          <StatTable rows={appState.state_wise_rows} />
+        </div>
+
+        <Box mt={8}>
+          <Copyright />
+        </Box>
+        <ThemeSwitcher theme={theme} onThemeChange={onThemeChange} />
+      </Container>
+    </ThemeProvider>
+>>>>>>> 5ddc96723226d616a0261fa1668761d83ee21247
   );
 }
