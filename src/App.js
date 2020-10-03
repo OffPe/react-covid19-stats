@@ -144,7 +144,6 @@ export default function App() {
   useEffect(() => {
     const handler = () => {
       setOfflineStatus('offline');
-      console.log('Offline');
     }
     window.addEventListener('offline', handler);
     return () => window.removeEventListener('offline', handler);
