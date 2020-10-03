@@ -148,7 +148,15 @@ export default function App() {
     }
     window.addEventListener('offline', handler);
     return () => window.removeEventListener('offline', handler);
-  })
+  }, [offlineStatus]);
+
+  useEffect(() => {
+    const handler = () => {
+      setOfflineStatus('online');
+    };
+    window.addEventListener('online', handler);
+    return () => window.removeEventListener('online', handler);
+  }, [offlineStatus]);
 
   const classes = useStyles();
 
