@@ -16,6 +16,7 @@ import ThemeSwitcher from "./components/ThemeSwitcher";
 import axios from "axios";
 import moment from "moment";
 import API_ENDPOINTS from "./constants/api";
+import OfflinePage from './components/OfflinePage';
 
 function Copyright() {
   return (
@@ -74,7 +75,11 @@ export default function App() {
     state_wise_rows: []
   });
 
+
+  const [offlineStatus, setOfflineStatus] = useState('');
+
   const [theme, setTheme] = useState("light");
+
 
   const setData = async () => {
     let api_response;
@@ -141,6 +146,27 @@ export default function App() {
     // eslint-disable-next-line
   }, []);
 
+  useEffect(() => {
+    const res = navigator.onLine ? 'online' : 'offline';
+    setOfflineStatus(res);
+  }, [offlineStatus]);
+
+  useEffect(() => {
+    const handler = () => {
+      setOfflineStatus('offline');
+    }
+    window.addEventListener('offline', handler);
+    return () => window.removeEventListener('offline', handler);
+  }, [offlineStatus]);
+
+  useEffect(() => {
+    const handler = () => {
+      setOfflineStatus('online');
+    };
+    window.addEventListener('online', handler);
+    return () => window.removeEventListener('online', handler);
+  }, [offlineStatus]);
+
   const classes = useStyles();
 
   const muiTheme = useMemo(
@@ -161,7 +187,7 @@ export default function App() {
     [setTheme]
   );
 
-  return (
+  return offlineStatus === 'offline' ? (<OfflinePage />) : (
     <ThemeProvider theme={muiTheme}>
       <Container component="main">
         <CssBaseline />
