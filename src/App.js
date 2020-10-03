@@ -171,23 +171,10 @@ export default function App() {
   }, [offlineStatus]);
 
   const classes = useStyles();
-
-
   const ThemeSwitcher = useThemeSwitcher();
+
   
   return (
-
-    
-    <Container component="main">
-
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Grid className={classes.row} container justify="space-between">
-          <Grid className={classes.statsItem} item>
-            <Typography display="inline" variant="h4" color="primary">
-              Covid19 Tracker
-  return offlineStatus === 'offline' ? (<OfflinePage />) 
-
     
       <Container component="main">
         <CssBaseline />
@@ -202,18 +189,16 @@ export default function App() {
               </Typography>
             </Grid>
             <Grid className={classes.statsItem} item>
-
               <Typography display="inline" variant="caption" color="primary">
                 Last updated
                 <br />
               </Typography>
-
+              
               <Typography display="inline" variant="subtitle2" color="primary">
                 {appState.meta.last_updated}
               </Typography>
             </Grid>
           </Grid>
-  
           <Grid className={classes.row} container justify="space-between">
         <Grid className={classes.statsItem} item>
           {ThemeSwitcher}
@@ -255,17 +240,14 @@ export default function App() {
             </Grid>
           </Grid>
 
-        </Grid>
+          <StatTable rows={appState.state_wise_rows} />
+        </div>
 
-        <StatTable rows={appState.state_wise_rows} />
-      </div>
-
-      <Box mt={8}>
-        <Copyright />
-      </Box>
-      
-    </Container>
+        <Box mt={8}>
+          <Copyright />
+        </Box>
+        
+      </Container>
     
-
   );
 }
