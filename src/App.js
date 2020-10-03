@@ -17,6 +17,8 @@ import axios from "axios";
 import moment from "moment";
 import API_ENDPOINTS from "./constants/api";
 import "./dark.css";
+import OfflinePage from './components/OfflinePage';
+
 
 function Copyright() {
 
@@ -80,11 +82,7 @@ export default function App() {
     state_wise_rows: []
   });
 
-<<<<<<< HEAD
-  
-=======
-  const [theme, setTheme] = useState("light");
->>>>>>> 5ddc96723226d616a0261fa1668761d83ee21247
+ const [offlineStatus, setOfflineStatus] = useState('');
 
   const setData = async () => {
     let api_response;
@@ -151,33 +149,34 @@ export default function App() {
     // eslint-disable-next-line
   }, []);
 
+  useEffect(() => {
+    const res = navigator.onLine ? 'online' : 'offline';
+    setOfflineStatus(res);
+  }, [offlineStatus]);
+
+  useEffect(() => {
+    const handler = () => {
+      setOfflineStatus('offline');
+    }
+    window.addEventListener('offline', handler);
+    return () => window.removeEventListener('offline', handler);
+  }, [offlineStatus]);
+
+  useEffect(() => {
+    const handler = () => {
+      setOfflineStatus('online');
+    };
+    window.addEventListener('online', handler);
+    return () => window.removeEventListener('online', handler);
+  }, [offlineStatus]);
+
   const classes = useStyles();
 
-<<<<<<< HEAD
+
   const ThemeSwitcher = useThemeSwitcher();
-=======
-  const muiTheme = useMemo(
-    () =>
-      createMuiTheme({
-        palette: {
-          type: theme
-        }
-      }),
-    [theme]
-  );
-
-  const onThemeChange = useCallback(
-    (event) => {
-      const nextTheme = event.target.checked ? "dark" : "light";
-      setTheme(nextTheme);
-    },
-    [setTheme]
-  );
->>>>>>> 5ddc96723226d616a0261fa1668761d83ee21247
-
   
   return (
-<<<<<<< HEAD
+
     
     <Container component="main">
 
@@ -187,8 +186,9 @@ export default function App() {
           <Grid className={classes.statsItem} item>
             <Typography display="inline" variant="h4" color="primary">
               Covid19 Tracker
-=======
-    <ThemeProvider theme={muiTheme}>
+  return offlineStatus === 'offline' ? (<OfflinePage />) 
+
+    
       <Container component="main">
         <CssBaseline />
         <div className={classes.paper}>
@@ -202,64 +202,23 @@ export default function App() {
               </Typography>
             </Grid>
             <Grid className={classes.statsItem} item>
->>>>>>> 5ddc96723226d616a0261fa1668761d83ee21247
+
               <Typography display="inline" variant="caption" color="primary">
                 Last updated
                 <br />
               </Typography>
-<<<<<<< HEAD
-            </Typography>
-          </Grid>
-          <Grid className={classes.statsItem} item>
-            <Typography display="inline" variant="caption" color="primary">
-              Last updated                  
-              <br />
-            </Typography>
-            
-            <Typography display="inline" variant="subtitle2" color="primary">
-              {appState.meta.last_updated}
-            </Typography>
-          </Grid>
-         
 
-        </Grid>
-        <Grid className={classes.row} container justify="space-between">
-        <Grid className={classes.statsItem} item>
-          {ThemeSwitcher}
-        </Grid>
-        </Grid>
-
-        <Grid className={classes.row} container spacing={4}>
-          <Grid item lg={3} sm={6} xl={3} xs={6}>
-            <StatGrid
-              stattext="Confirmed"
-              totalcount={appState.meta.confirmed_total_count}
-              latestcount={appState.meta.confirmed_latest_total_count}
-              className={classes.errorText}
-            />
-          </Grid>
-          <Grid item lg={3} sm={6} xl={3} xs={6}>
-            <StatGrid
-              stattext="Active"
-              totalcount={appState.meta.active_total_count}
-              latestcount={appState.meta.active_latest_total_count}
-              className={classes.primaryText}
-            />
-          </Grid>
-          <Grid item lg={3} sm={6} xl={3} xs={6}>
-            <StatGrid
-              stattext="Recovered"
-              totalcount={appState.meta.recovered_total_count}
-              latestcount={appState.meta.recovered_latest_total_count}
-              className={classes.successText}
-            />
-=======
               <Typography display="inline" variant="subtitle2" color="primary">
                 {appState.meta.last_updated}
               </Typography>
             </Grid>
->>>>>>> 5ddc96723226d616a0261fa1668761d83ee21247
           </Grid>
+  
+          <Grid className={classes.row} container justify="space-between">
+        <Grid className={classes.statsItem} item>
+          {ThemeSwitcher}
+        </Grid>
+        </Grid>
 
           <Grid className={classes.row} container spacing={4}>
             <Grid item lg={3} sm={6} xl={3} xs={6}>
@@ -295,7 +254,7 @@ export default function App() {
               />
             </Grid>
           </Grid>
-<<<<<<< HEAD
+
         </Grid>
 
         <StatTable rows={appState.state_wise_rows} />
@@ -307,17 +266,6 @@ export default function App() {
       
     </Container>
     
-=======
 
-          <StatTable rows={appState.state_wise_rows} />
-        </div>
-
-        <Box mt={8}>
-          <Copyright />
-        </Box>
-        <ThemeSwitcher theme={theme} onThemeChange={onThemeChange} />
-      </Container>
-    </ThemeProvider>
->>>>>>> 5ddc96723226d616a0261fa1668761d83ee21247
   );
 }
