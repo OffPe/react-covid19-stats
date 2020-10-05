@@ -23,6 +23,12 @@ const useStyles = makeStyles((theme) => ({
   differenceValue: {
     // color: theme.palette.error.dark,
     marginRight: theme.spacing(1)
+  },
+  
+  [theme.breakpoints.down('xs')]: {
+    responsiveDirection: {
+      flexDirection: 'column',
+    },
   }
 }));
 
@@ -35,7 +41,7 @@ const StatGrid = (props) => {
   return (
     <Card {...rest} className={clsx(className)}>
       <CardContent>
-        <Grid container justify="space-between">
+        <Grid container justify="space-between" className={classes.responsiveDirection}>
           <Grid item>
             <Typography
               className={classes.title}
