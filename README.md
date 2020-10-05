@@ -1,5 +1,5 @@
 <h1 align="center">
-  🦠react-covid19-stats 📊
+  <img src="./public/images/logo.png" width="500"/>
 </h1>
 
 <p align="center">
