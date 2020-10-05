@@ -3,6 +3,7 @@ import Box from "@material-ui/core/Box";
 import Switch from "@material-ui/core/Switch";
 import WbSunnyIcon from '@material-ui/icons/WbSunny';
 import { makeStyles } from "@material-ui/core/styles";
+import '../dark.css';
 
 const useStyles =  makeStyles(() => ({
   themeChange: {
@@ -44,12 +45,12 @@ function useThemeSwitcher(){
         color="default"
       />
     
-    <a 
+    <button 
     className = "cursor-pointer" 
     
     >
       {mode === "dark" ? <WbSunnyIcon className = {classes.themeIcon}/> : <WbSunnyIcon className = {classes.themeIcon}/>}
-      </a>
+      </button>
       </Box>
       </div>
   );

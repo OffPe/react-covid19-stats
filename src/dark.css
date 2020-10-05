@@ -1,3 +1,8 @@
 body.dark-mode{
     background: rgb(61, 59, 59);
 }
+
+.cursor-pointer{
+border-radius: 20px;
+background-color: #ddec579c;
+}
