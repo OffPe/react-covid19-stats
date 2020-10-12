@@ -1,5 +1,5 @@
 <h1 align="center">
-  🦠react-covid19-stats 📊
+  <img src="./public/images/logo.png" width="500"/>
 </h1>
 
 <p align="center">
@@ -78,12 +78,12 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="http://jaideepghosh.blogspot.com"><img src="https://avatars2.githubusercontent.com/u/3909648?v=4" width="100px;" alt=""/><br /><sub><b>Jaideep Ghosh</b></sub></a><br /><a href="https://github.com/OffPe/react-covid19-stats/commits?author=jaideepghosh" title="Code">💻</a></td>
     <td align="center"><a href="http://yigit.dev"><img src="https://avatars0.githubusercontent.com/u/42731194?v=4" width="100px;" alt=""/><br /><sub><b>Yigit Cukuren</b></sub></a><br /><a href="https://github.com/OffPe/react-covid19-stats/commits?author=yigitcukuren" title="Code">💻</a></td>
+    <td align="center"><a href="https://safeshare.live"><img src="https://avatars3.githubusercontent.com/u/43115551?v=4" width="100px;" alt=""/><br /><sub><b>Abishek PY</b></sub></a><br /><a href="https://github.com/OffPe/react-covid19-stats/commits?author=vj-abishek" title="Code">💻</a></td>
   </tr>
 </table>
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
-
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ## 💻 Built with
