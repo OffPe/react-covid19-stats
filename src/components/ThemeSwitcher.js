@@ -1,8 +1,9 @@
-import React, { memo } from "react";
+import React, {useState, useEffect } from "react";
 import Box from "@material-ui/core/Box";
 import Switch from "@material-ui/core/Switch";
 import WbSunnyIcon from '@material-ui/icons/WbSunny';
 import { makeStyles } from "@material-ui/core/styles";
+import '../dark.css';
 
 const useStyles =  makeStyles(() => ({
   themeChange: {
@@ -17,21 +18,43 @@ const useStyles =  makeStyles(() => ({
     opacity: .8
   }
 }));
-
-const ThemeSwitcher = ({ theme, onThemeChange }) => {
+function useThemeSwitcher(){
   const classes = useStyles();
+  const[mode, setMode] = useState(() => localStorage.getItem("mode"));
 
-  return (
-    <Box className={classes.themeChange}>
+  useEffect(() => {
+    if(mode === "dark"){
+      document.body.classList.add("dark-mode");
+      localStorage.setItem("mode", "dark");
+    }else{
+      document.body.classList.remove("dark-mode");
+      localStorage.setItem("mode", "light");
+    }
+    
+  }, [mode])
+
+  return(
+    <div>
+      <Box className={classes.themeChange}>
       <Switch
-        checked={theme === 'dark'}
-        onChange={onThemeChange}
-        name="theme"
+      onClick = {()=> 
+        setMode(mode => (mode === "dark" ? "light" : "dark"))
+      }
+        checked={mode === 'dark'}
+        name="mode"
         color="default"
       />
-      <WbSunnyIcon className={classes.themeIcon} fontSize="small"/>
-    </Box>
-  )
-};
+    
+    <button 
+    className = "cursor-pointer" 
+    
+    >
+      {mode === "dark" ? <WbSunnyIcon className = {classes.themeIcon}/> : <WbSunnyIcon className = {classes.themeIcon}/>}
+      </button>
+      </Box>
+      </div>
+  );
+  }
 
-export default memo(ThemeSwitcher);
+
+export default useThemeSwitcher;
