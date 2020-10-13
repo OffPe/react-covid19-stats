@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useCallback } from "react";
+import React, { useState, useEffect} from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
@@ -6,20 +6,24 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import {
   makeStyles,
-  createMuiTheme,
-  ThemeProvider
+  
 } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import StatGrid from "./components/StatGrid";
 import StatTable from "./components/StatTable";
-import ThemeSwitcher from "./components/ThemeSwitcher";
+import useThemeSwitcher from "./components/ThemeSwitcher";
 import axios from "axios";
 import moment from "moment";
 import API_ENDPOINTS from "./constants/api";
-import OfflinePage from './components/OfflinePage';
+import "./dark.css";
+
+
 
 function Copyright() {
+
+  
   return (
+    <div>
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
       <Link color="inherit" href="https://offpe.github.io/react-covid19-stats/">
@@ -28,6 +32,8 @@ function Copyright() {
       {new Date().getFullYear()}
       {"."}
     </Typography>
+    
+    </div>
   );
 }
 
@@ -75,11 +81,7 @@ export default function App() {
     state_wise_rows: []
   });
 
-
-  const [offlineStatus, setOfflineStatus] = useState('');
-
-  const [theme, setTheme] = useState("light");
-
+ const [offlineStatus, setOfflineStatus] = useState('');
 
   const setData = async () => {
     let api_response;
@@ -168,27 +170,11 @@ export default function App() {
   }, [offlineStatus]);
 
   const classes = useStyles();
+  const ThemeSwitcher = useThemeSwitcher();
 
-  const muiTheme = useMemo(
-    () =>
-      createMuiTheme({
-        palette: {
-          type: theme
-        }
-      }),
-    [theme]
-  );
-
-  const onThemeChange = useCallback(
-    (event) => {
-      const nextTheme = event.target.checked ? "dark" : "light";
-      setTheme(nextTheme);
-    },
-    [setTheme]
-  );
-
-  return offlineStatus === 'offline' ? (<OfflinePage />) : (
-    <ThemeProvider theme={muiTheme}>
+  
+  return (
+    
       <Container component="main">
         <CssBaseline />
         <div className={classes.paper}>
@@ -206,11 +192,17 @@ export default function App() {
                 Last updated
                 <br />
               </Typography>
+              
               <Typography display="inline" variant="subtitle2" color="primary">
                 {appState.meta.last_updated}
               </Typography>
             </Grid>
           </Grid>
+          <Grid className={classes.row} container justify="space-between">
+        <Grid className={classes.statsItem} item>
+          {ThemeSwitcher}
+        </Grid>
+        </Grid>
 
           <Grid className={classes.row} container spacing={4}>
             <Grid item lg={3} sm={6} xl={3} xs={6}>
@@ -253,8 +245,8 @@ export default function App() {
         <Box mt={8}>
           <Copyright />
         </Box>
-        <ThemeSwitcher theme={theme} onThemeChange={onThemeChange} />
+        
       </Container>
-    </ThemeProvider>
+    
   );
 }
