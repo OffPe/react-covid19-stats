@@ -79,6 +79,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://jaideepghosh.blogspot.com"><img src="https://avatars2.githubusercontent.com/u/3909648?v=4" width="100px;" alt=""/><br /><sub><b>Jaideep Ghosh</b></sub></a><br /><a href="https://github.com/OffPe/react-covid19-stats/commits?author=jaideepghosh" title="Code">💻</a></td>
     <td align="center"><a href="http://yigit.dev"><img src="https://avatars0.githubusercontent.com/u/42731194?v=4" width="100px;" alt=""/><br /><sub><b>Yigit Cukuren</b></sub></a><br /><a href="https://github.com/OffPe/react-covid19-stats/commits?author=yigitcukuren" title="Code">💻</a></td>
     <td align="center"><a href="https://safeshare.live"><img src="https://avatars3.githubusercontent.com/u/43115551?v=4" width="100px;" alt=""/><br /><sub><b>Abishek PY</b></sub></a><br /><a href="https://github.com/OffPe/react-covid19-stats/commits?author=vj-abishek" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/romasinha"><img src="https://avatars2.githubusercontent.com/u/65072006?v=4" width="100px;" alt=""/><br /><sub><b>Roma Sinha</b></sub></a><br /><a href="https://github.com/OffPe/react-covid19-stats/commits?author=romasinha" title="Code">💻</a></td>
   </tr>
 </table>
 
