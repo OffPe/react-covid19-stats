@@ -3,7 +3,7 @@
   "short_name": "Covid Tracker",
   "theme_color": "#eb5569",
   "background_color": "#000000",
-  "display": "browser",
+  "display": "standalone",
   "Scope": "/",
   "start_url": "/",
   "icons": [
