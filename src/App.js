@@ -4,13 +4,12 @@ import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
-import {
-  makeStyles,
-  
-} from "@material-ui/core/styles";
+import {  makeStyles,} from "@material-ui/core/styles";
+import { coordinates } from "./constants/coordinates"
 import Container from "@material-ui/core/Container";
 import StatGrid from "./components/StatGrid";
 import StatTable from "./components/StatTable";
+import Map from "./components/Map"
 import useThemeSwitcher from "./components/ThemeSwitcher";
 import axios from "axios";
 import moment from "moment";
