@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
+import {
+  makeStyles,
+  
+} from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import StatGrid from "./components/StatGrid";
 import StatTable from "./components/StatTable";
@@ -15,20 +18,22 @@ import moment from "moment";
 import API_ENDPOINTS from "./constants/api";
 import "./dark.css";
 
+
+
 function Copyright() {
+
+  
   return (
     <div>
-      <Typography variant="body2" color="textSecondary" align="center">
-        {"Copyright © "}
-        <Link
-          color="inherit"
-          href="https://offpe.github.io/react-covid19-stats/"
-        >
-          Covid19 Tracker
-        </Link>{" "}
-        {new Date().getFullYear()}
-        {"."}
-      </Typography>
+    <Typography variant="body2" color="textSecondary" align="center">
+      {"Copyright © "}
+      <Link color="inherit" href="https://offpe.github.io/react-covid19-stats/">
+        Covid19 Tracker
+      </Link>{" "}
+      {new Date().getFullYear()}
+      {"."}
+    </Typography>
+    
     </div>
   );
 }
@@ -38,23 +43,23 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
+    alignItems: "center"
   },
   row: {
-    marginBottom: theme.spacing(3),
+    marginBottom: theme.spacing(3)
   },
   primaryText: {
-    color: theme.palette.primary.main,
+    color: theme.palette.primary.main
   },
   successText: {
-    color: theme.palette.success.main,
+    color: theme.palette.success.main
   },
   errorText: {
-    color: theme.palette.error.main,
+    color: theme.palette.error.main
   },
   greyText: {
-    color: theme.palette.grey.main,
-  },
+    color: theme.palette.grey.main
+  }
 }));
 
 const numberWithCommas = (count) => {
@@ -72,12 +77,12 @@ export default function App() {
       active_latest_total_count: 0,
       recovered_latest_total_count: 0,
       deceased_latest_total_count: 0,
-      last_updated: "",
+      last_updated: ""
     },
-    state_wise_rows: [],
+    state_wise_rows: []
   });
 
-  const [offlineStatus, setOfflineStatus] = useState("");
+ const [offlineStatus, setOfflineStatus] = useState('');
 
   const setData = async () => {
     let api_response;
@@ -115,9 +120,9 @@ export default function App() {
         last_updated: moment(
           api_response.data.statewise[0].lastupdatedtime,
           "DD/MM/YYYY hh:mm:ss"
-        ).fromNow(),
+        ).fromNow()
       },
-      state_wise_rows: frame_state_wise_data(api_response.data.statewise),
+      state_wise_rows: frame_state_wise_data(api_response.data.statewise)
     });
   };
 
@@ -133,7 +138,7 @@ export default function App() {
         confirmed: current_state.confirmed,
         active: current_state.active,
         recovered: current_state.recovered,
-        deceased: current_state.deaths,
+        deceased: current_state.deaths
       });
     }
     return response;
@@ -145,103 +150,107 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    const res = navigator.onLine ? "online" : "offline";
+    const res = navigator.onLine ? 'online' : 'offline';
     setOfflineStatus(res);
   }, [offlineStatus]);
 
   useEffect(() => {
     const handler = () => {
-      setOfflineStatus("offline");
-    };
-    window.addEventListener("offline", handler);
-    return () => window.removeEventListener("offline", handler);
+      setOfflineStatus('offline');
+    }
+    window.addEventListener('offline', handler);
+    return () => window.removeEventListener('offline', handler);
   }, [offlineStatus]);
 
   useEffect(() => {
     const handler = () => {
-      setOfflineStatus("online");
+      setOfflineStatus('online');
     };
-    window.addEventListener("online", handler);
-    return () => window.removeEventListener("online", handler);
+    window.addEventListener('online', handler);
+    return () => window.removeEventListener('online', handler);
   }, [offlineStatus]);
 
   const classes = useStyles();
   const ThemeSwitcher = useThemeSwitcher();
 
+  
   return (
-    <Container component="main">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Grid className={classes.row} container justify="space-between">
-          <Grid className={classes.statsItem} item>
-            <Typography display="inline" variant="h4" color="primary">
-              Covid19 Tracker
-              <Typography display="inline" variant="caption" color="primary">
-                (India)
+    
+      <Container component="main">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Grid className={classes.row} container justify="space-between">
+            <Grid className={classes.statsItem} item>
+              <Typography display="inline" variant="h4" color="primary">
+                Covid19 Tracker
+                <Typography display="inline" variant="caption" color="primary">
+                  (India)
+                </Typography>
               </Typography>
-            </Typography>
+            </Grid>
+            <Grid className={classes.statsItem} item>
+              <Typography display="inline" variant="caption" color="primary">
+                Last updated
+                <br />
+              </Typography>
+              
+              <Typography display="inline" variant="subtitle2" color="primary">
+                {appState.meta.last_updated}
+              </Typography>
+            </Grid>
           </Grid>
-          <Grid className={classes.statsItem} item>
-            <Typography display="inline" variant="caption" color="primary">
-              Last updated
-              <br />
-            </Typography>
-
-            <Typography display="inline" variant="subtitle2" color="primary">
-              {appState.meta.last_updated}
-            </Typography>
-          </Grid>
+          <Grid className={classes.row} container justify="space-between">
+        <Grid className={classes.statsItem} item>
+          {ThemeSwitcher}
         </Grid>
-        <Grid className={classes.row} container justify="space-between">
-          <Grid className={classes.statsItem} item>
-            {ThemeSwitcher}
-          </Grid>
         </Grid>
 
-        <Grid className={classes.row} container spacing={4}>
-          <Grid item lg={3} sm={6} xl={3} xs={6}>
-            <StatGrid
-              stattext="Confirmed"
-              totalcount={appState.meta.confirmed_total_count}
-              latestcount={appState.meta.confirmed_latest_total_count}
-              className={classes.errorText}
-            />
-          </Grid>
-          <Grid item lg={3} sm={6} xl={3} xs={6}>
-            <StatGrid
-              stattext="Active"
-              totalcount={appState.meta.active_total_count}
-              latestcount={appState.meta.active_latest_total_count}
-              className={classes.primaryText}
-            />
-          </Grid>
-          <Grid item lg={3} sm={6} xl={3} xs={6}>
-            <StatGrid
-              stattext="Recovered"
-              totalcount={appState.meta.recovered_total_count}
-              latestcount={appState.meta.recovered_latest_total_count}
-              className={classes.successText}
-            />
-          </Grid>
-          <Grid item lg={3} sm={6} xl={3} xs={6}>
-            <StatGrid
-              stattext="Deceased"
-              totalcount={appState.meta.deceased_total_count}
-              latestcount={appState.meta.deceased_latest_total_count}
-              className={classes.greyText}
-            />
-          </Grid>
+          <Grid className={classes.row} container spacing={4}>
+            <Grid item lg={3} sm={6} xl={3} xs={6}>
+              <StatGrid
+                stattext="Confirmed"
+                totalcount={appState.meta.confirmed_total_count}
+                latestcount={appState.meta.confirmed_latest_total_count}
+                className={classes.errorText}
+              />
+            </Grid>
+            <Grid item lg={3} sm={6} xl={3} xs={6}>
+              <StatGrid
+                stattext="Active"
+                totalcount={appState.meta.active_total_count}
+                latestcount={appState.meta.active_latest_total_count}
+                className={classes.primaryText}
+              />
+            </Grid>
+            <Grid item lg={3} sm={6} xl={3} xs={6}>
+              <StatGrid
+                stattext="Recovered"
+                totalcount={appState.meta.recovered_total_count}
+                latestcount={appState.meta.recovered_latest_total_count}
+                className={classes.successText}
+              />
+            </Grid>
+            <Grid item lg={3} sm={6} xl={3} xs={6}>
+              <StatGrid
+                stattext="Deceased"
+                totalcount={appState.meta.deceased_total_count}
+                latestcount={appState.meta.deceased_latest_total_count}
+                className={classes.greyText}
+              />
+            </Grid>
           <Grid item lg={12} sm={12} xl={12} xs={12}>
-            <HistoryChart />
+            <HistoryChart chart="dailyconfirmed" appState={appState} />
           </Grid>
-        </Grid>
+          </Grid>
 
-        <StatTable rows={appState.state_wise_rows} />
-      </div>
+          <StatTable rows={appState.state_wise_rows} />
+        </div>
 
-      <Box mt={8}>
-        <Copyright />
-      </Box>
-    </Container>
+        <Box mt={8}>
+          <Copyright />
+        </Box>
+        
+      </Container>
+    
   );
 }
