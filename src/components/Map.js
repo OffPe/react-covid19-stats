@@ -11,7 +11,7 @@ const initialState = {
   map_data: [],
   tooltip: null,
   viewport: {
-    width: 1200,
+    width: "100%",
     height: 600,
       latitude: 22,
       longitude: 82,

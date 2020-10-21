@@ -49,7 +49,7 @@ const headCells = [
   { id: "confirmed", numeric: false, label: "Confirmed" },
   { id: "active", numeric: true, label: "Active" },
   { id: "recovered", numeric: true, label: "Recovered" },
-  { id: "deaths", numeric: true, label: "deaths" }
+  { id: "deaths", numeric: true, label: "Deceased" }
 ];
 
 function EnhancedTableHead(props) {

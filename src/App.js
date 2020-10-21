@@ -18,7 +18,6 @@ import "./dark.css";
 
 
 function Copyright() {
-
   
   return (
     <div>
@@ -245,7 +244,7 @@ export default function App() {
             </Grid>
             <Grid item lg={3} sm={6} xl={3} xs={6}>
               <StatGrid
-                stattext="deaths"
+                stattext="Deceased"
                 totalcount={appState.meta.deaths_total_count}
                 latestcount={appState.meta.deaths_latest_total_count}
                 className={classes.greyText}
