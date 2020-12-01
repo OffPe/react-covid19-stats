@@ -29,7 +29,6 @@ const useStyles = makeStyles((theme) => ({
 const StatGrid = (props) => {
   const { className, ...rest } = props;
   const { stattext, totalcount, latestcount } = props;
-
   const classes = useStyles();
 
   return (

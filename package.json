@@ -11,10 +11,13 @@
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
     "lodash": "^4.17.19",
+    "mapbox-gl": "^1.12.0",
     "moment": "^2.24.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-map-gl": "^5.2.8",
+    "react-scripts": "^3.4.3",
+    "reactjs-popup": "^2.0.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -40,6 +43,9 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^3.1.0"
+    "gh-pages": "^3.1.0",
+    "json-loader": "^0.5.7",
+    "transform-loader": "^0.2.4",
+    "webworkify-webpack": "^1.0.6"
   }
 }

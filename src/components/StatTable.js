@@ -49,7 +49,7 @@ const headCells = [
   { id: "confirmed", numeric: false, label: "Confirmed" },
   { id: "active", numeric: true, label: "Active" },
   { id: "recovered", numeric: true, label: "Recovered" },
-  { id: "deceased", numeric: true, label: "Deceased" }
+  { id: "deaths", numeric: true, label: "Deceased" }
 ];
 
 function EnhancedTableHead(props) {
@@ -128,7 +128,7 @@ export default function StatTable(props) {
     item.confirmed = parseInt(item.confirmed, 10);
     item.active = parseInt(item.active, 10);
     item.recovered = parseInt(item.recovered, 10);
-    item.deceased = parseInt(item.deceased, 10);
+    item.deaths = parseInt(item.deaths, 10);
   });
 
   const classes = useStyles();
@@ -195,7 +195,7 @@ export default function StatTable(props) {
                       <TableCell align="right">{row.confirmed}</TableCell>
                       <TableCell align="right">{row.active}</TableCell>
                       <TableCell align="right">{row.recovered}</TableCell>
-                      <TableCell align="right">{row.deceased}</TableCell>
+                      <TableCell align="right">{row.deaths}</TableCell>
                     </TableRow>
                   );
                 })}

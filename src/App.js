@@ -4,13 +4,12 @@ import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
-import {
-  makeStyles,
-  
-} from "@material-ui/core/styles";
+import {  makeStyles,} from "@material-ui/core/styles";
+import { coordinates } from "./constants/coordinates"
 import Container from "@material-ui/core/Container";
 import StatGrid from "./components/StatGrid";
 import StatTable from "./components/StatTable";
+import Map from "./components/Map"
 import useThemeSwitcher from "./components/ThemeSwitcher";
 import axios from "axios";
 import moment from "moment";
@@ -18,9 +17,7 @@ import API_ENDPOINTS from "./constants/api";
 import "./dark.css";
 
 
-
 function Copyright() {
-
   
   return (
     <div>
@@ -71,17 +68,19 @@ export default function App() {
       confirmed_total_count: 0,
       active_total_count: 0,
       recovered_total_count: 0,
-      deceased_total_count: 0,
+      deaths_total_count: 0,
       confirmed_latest_total_count: 0,
       active_latest_total_count: 0,
       recovered_latest_total_count: 0,
-      deceased_latest_total_count: 0,
+      deaths_latest_total_count: 0,
       last_updated: ""
     },
     state_wise_rows: []
   });
 
  const [offlineStatus, setOfflineStatus] = useState('');
+
+
 
   const setData = async () => {
     let api_response;
@@ -103,7 +102,7 @@ export default function App() {
         recovered_total_count: numberWithCommas(
           api_response.data.statewise[0].recovered
         ),
-        deceased_total_count: numberWithCommas(
+        deaths_total_count: numberWithCommas(
           api_response.data.statewise[0].deaths
         ),
         confirmed_latest_total_count: numberWithCommas(
@@ -113,7 +112,7 @@ export default function App() {
         recovered_latest_total_count: numberWithCommas(
           api_response.data.statewise[0].deltarecovered
         ),
-        deceased_latest_total_count: numberWithCommas(
+        deaths_latest_total_count: numberWithCommas(
           api_response.data.statewise[0].deltadeaths
         ),
         last_updated: moment(
@@ -125,20 +124,35 @@ export default function App() {
     });
   };
 
+
   const frame_state_wise_data = (data = []) => {
     let response = [];
     if (!data.length) return response;
     data.splice(0, 1); //1st index contains the meta.
     // console.log("data:::", data);
+    
     for (let i = 0; i < data.length; i++) {
       let current_state = data[i];
-      response.push({
+      let obj = {
         state_ut: current_state.state,
         confirmed: current_state.confirmed,
         active: current_state.active,
         recovered: current_state.recovered,
-        deceased: current_state.deaths
-      });
+        deaths: current_state.deaths
+      };
+    // Patch for countries' coordinates 
+      obj['coordinates'] = {
+        latitude:
+          coordinates.find(f => f.country === current_state.state) !== undefined
+            ? coordinates.find(f => f.country === current_state.state).latlng[0]
+            : 0,
+        longitude:
+          coordinates.find(f => f.country === current_state.state) !== undefined
+            ? coordinates.find(f => f.country === current_state.state).latlng[1]
+            : 0,
+            
+      }
+      response.push(obj);
     }
     return response;
   };
@@ -172,9 +186,8 @@ export default function App() {
   const classes = useStyles();
   const ThemeSwitcher = useThemeSwitcher();
 
-  
+
   return (
-    
       <Container component="main">
         <CssBaseline />
         <div className={classes.paper}>
@@ -232,21 +245,31 @@ export default function App() {
             <Grid item lg={3} sm={6} xl={3} xs={6}>
               <StatGrid
                 stattext="Deceased"
-                totalcount={appState.meta.deceased_total_count}
-                latestcount={appState.meta.deceased_latest_total_count}
+                totalcount={appState.meta.deaths_total_count}
+                latestcount={appState.meta.deaths_latest_total_count}
                 className={classes.greyText}
               />
             </Grid>
           </Grid>
 
           <StatTable rows={appState.state_wise_rows} />
+     
+          <Map 
+            colors={["rgba(5, 155, 247, 0.7)","rgba(233,30,99,0.7)","rgba(53,211,156,0.7)"]}
+            data={appState.state_wise_rows}
+            fields={["confirmed", "deaths", "recovered"]}
+            query={"confirmed"}
+          />
         </div>
-
+    
         <Box mt={8}>
           <Copyright />
         </Box>
         
       </Container>
-    
+   
   );
 }
+
+
+
